@@ -2,25 +2,32 @@
 
 public class ForensicsCaseLibrary
 {
-    private readonly List<Case> cases = new();
+    private int _nextCaseNumber = 1;
+    private readonly List<Case> _cases = new();
 
-    public Case CreateCase(string caseNumber, int customerID, string responsiblePerson, string caseType)
+    public Case CreateCase(int customerId, string responsiblePerson, string caseType)
     {
-        var newCase = new Case(caseNumber, customerID, responsiblePerson, caseType);
-        cases.Add(newCase);
+        string caseNumber = GenerateCaseNumber(); // Automatically generated case number
+        var newCase = new Case(caseNumber, customerId, responsiblePerson, caseType);
+        _cases.Add(newCase);
         return newCase;
     }
 
+    private string GenerateCaseNumber()
+    {
+        return (_nextCaseNumber++).ToString("D4");
+    }
+    
     public void AddExhibitToCase(string caseNumber, Exhibit exhibit)
     {
-        var selectedCase = cases.FirstOrDefault(c => c.CaseNumber == caseNumber);
+        var selectedCase = _cases.FirstOrDefault(c => c.CaseNumber == caseNumber);
         selectedCase?.AddExhibit(exhibit);
     }
 
-    public IEnumerable<Case> ListAllCases() => cases;
+    public IEnumerable<Case> ListAllCases() => _cases;
 
     public Case GetCaseByNumber(string caseNumber) =>
-        cases.FirstOrDefault(c => c.CaseNumber == caseNumber);
+        _cases.FirstOrDefault(c => c.CaseNumber == caseNumber)!;
 
     public void ApproveCase(string caseNumber)
     {
