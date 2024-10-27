@@ -3,3 +3,9 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+
+# Rider/IDEA specific files
+.idea/
+
+# Rider user settings
+*.DotSettings.user
