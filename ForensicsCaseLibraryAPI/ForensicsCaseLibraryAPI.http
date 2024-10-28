@@ -1,0 +1,50 @@
+### Create a new case
+POST http://localhost:5276/api/cases
+Content-Type: application/json
+
+{
+  "CustomerID": 112,
+  "ResponsiblePerson": "Detective D",
+  "CaseType": "Fraud"
+}
+
+###
+
+### Get all cases
+GET http://localhost:5276/api/cases
+
+###
+
+### Get a specific case by case number
+# Replace {caseNumber} with the actual case number, e.g., "0001"
+GET http://localhost:5276/api/cases/0001
+
+###
+
+### Approve a case by case number
+# Replace {caseNumber} with the actual case number, e.g., "0001"
+PUT http://localhost:5276/api/cases/0001/approve
+
+###
+
+### Reject a case by case number
+# Replace {caseNumber} with the actual case number, e.g., "0001"
+PUT http://localhost:5276/api/cases/0001/reject
+
+###
+
+### Add an exhibit to a case
+# Replace {caseNumber} with the actual case number, e.g., "0001"
+POST http://localhost:5276/api/cases/0001/exhibits
+Content-Type: application/json
+
+{
+  "Type": "BulletShell",
+  "DateCollected": "2024-10-28T12:00:00"
+}
+
+###
+
+### Get the total cost of a case
+# Replace {caseNumber} with the actual case number, e.g., "00001"
+GET http://localhost:5276/api/cases/0001/cost

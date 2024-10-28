@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForensicsCaseLibrary", "For
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForensicsCaseLibrary.Tests", "ForensicsCaseLibrary.Tests\ForensicsCaseLibrary.Tests.csproj", "{7544DCEC-4E22-4746-978A-FD380479E40D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForensicsCaseLibraryAPI", "ForensicsCaseLibraryAPI\ForensicsCaseLibraryAPI.csproj", "{1E9137B6-8F5F-4B3E-A358-DDC4346B3EC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{7544DCEC-4E22-4746-978A-FD380479E40D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7544DCEC-4E22-4746-978A-FD380479E40D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7544DCEC-4E22-4746-978A-FD380479E40D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E9137B6-8F5F-4B3E-A358-DDC4346B3EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E9137B6-8F5F-4B3E-A358-DDC4346B3EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E9137B6-8F5F-4B3E-A358-DDC4346B3EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E9137B6-8F5F-4B3E-A358-DDC4346B3EC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
