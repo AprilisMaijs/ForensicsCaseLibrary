@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ForensicsCaseLibrary;
-using System;
-using System.Collections.Generic;
+﻿using ForensicsCaseLibrary;
+using Microsoft.AspNetCore.Mvc;
 
-namespace ForensicsCaseAPI.Controllers
+namespace ForensicsCaseLibraryAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -11,7 +9,7 @@ namespace ForensicsCaseAPI.Controllers
     {
         private readonly ForensicsCaseLibrary.ForensicsCaseLibrary _forensicsLibrary;
 
-        public CasesController(ForensicsCaseLibrary.ForensicsCaseLibrary forensicsLibrary) // Injected singleton instance
+        public CasesController(ForensicsCaseLibrary.ForensicsCaseLibrary forensicsLibrary) 
         {
             _forensicsLibrary = forensicsLibrary;
         }

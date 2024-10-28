@@ -1,7 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container
-builder.Services.AddSingleton<ForensicsCaseLibrary.ForensicsCaseLibrary>(); // Register as a Singleton
+
+builder.Services.AddSingleton<ForensicsCaseLibrary.ForensicsCaseLibrary>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

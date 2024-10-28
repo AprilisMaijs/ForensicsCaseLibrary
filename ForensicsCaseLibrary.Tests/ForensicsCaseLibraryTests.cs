@@ -5,10 +5,10 @@ namespace ForensicsCaseLibrary.Tests;
 [TestFixture]
 public class ForensicsCaseLibraryTests
 {
-    private global::ForensicsCaseLibrary.ForensicsCaseLibrary _library;
+    private ForensicsCaseLibrary _library;
 
     [SetUp]
-    public void Setup() => _library = new global::ForensicsCaseLibrary.ForensicsCaseLibrary();
+    public void Setup() => _library = new ForensicsCaseLibrary();
 
     [Test]
     public void TestCaseCreation()
