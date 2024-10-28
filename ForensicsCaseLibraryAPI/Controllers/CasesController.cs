@@ -105,13 +105,13 @@ namespace ForensicsCaseLibraryAPI.Controllers
     public class CaseRequest
     {
         public int CustomerId { get; set; }
-        public string ResponsiblePerson { get; set; }
-        public string CaseType { get; set; }
+        public required string ResponsiblePerson { get; set; }
+        public required string CaseType { get; set; }
     }
 
     public class ExhibitRequest
     {
-        public string Type { get; set; }
+        public required string Type { get; set; }
         public DateTime DateCollected { get; set; }
     }
 }
