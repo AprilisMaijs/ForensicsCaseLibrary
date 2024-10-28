@@ -2,5 +2,5 @@
 
 public enum CaseState
 {
-    New, OnHold, Approved, Rejected
+    New, OnHold, Approved, Rejected, Completed
 }

@@ -2,7 +2,7 @@
 
 public class Case
 {
-    private const decimal BasePrice = 50;
+    private decimal BasePrice { get; }
     private static readonly Dictionary<string, decimal> ExhibitPricing = new()
     {
         { "BulletShell", 15 },
@@ -18,31 +18,69 @@ public class Case
     
     private readonly List<Exhibit> _exhibits = new();
     public IReadOnlyList<Exhibit> Exhibits => _exhibits.AsReadOnly();
-    public Case(string caseNumber, int customerId, string responsiblePerson, string caseType)
+    public Case(string caseNumber, int customerId, string responsiblePerson, string caseType, decimal basePrice = 50)
     {
         CaseNumber = caseNumber;
         CustomerId = customerId;
         ResponsiblePerson = responsiblePerson;
         CaseType = caseType;
-        State = CaseState.OnHold;
+        State = CaseState.New;
+        this.BasePrice = basePrice;
     }
 
     public void AddExhibit(Exhibit exhibit) => _exhibits.Add(exhibit);
 
-    public void Approve() => State = CaseState.Approved;
+    public void Approve()
+    {
+        State = State switch
+        {
+            CaseState.Rejected => throw new InvalidOperationException(
+                "Cannot approve a case that has already been rejected."),
+            CaseState.Completed => throw new InvalidOperationException(
+                "Cannot approve a case that has already been completed."),
+            _ => CaseState.Approved
+        };
+    }
 
-    public void Reject() => State = CaseState.Rejected;
+    public void Reject()
+    {
+        if (State == CaseState.Completed)
+        {
+            throw new InvalidOperationException("Cannot reject a case that has already been completed.");
+        }
+    
+        State = CaseState.Rejected;
+    }
+
+    public void PlaceOnHold()
+    {
+        State = State switch
+        {
+            CaseState.Rejected => throw new InvalidOperationException(
+                "Cannot place on hold a case that has already been rejected."),
+            CaseState.Completed => throw new InvalidOperationException(
+                "Cannot place on hold a case that has already been completed."),
+            _ => CaseState.OnHold
+        };
+    }
+    
+    public void Complete()
+    {
+        State = State switch
+        {
+            CaseState.Rejected => throw new InvalidOperationException(
+                "Cannot complete a case that has already been rejected."),
+            CaseState.New => throw new InvalidOperationException(
+                "Cannot complete a case that has not been approved."),
+            _ => CaseState.Completed
+        };
+    }
 
     public decimal CalculateTotalCost()
     {
-        decimal totalCost = BasePrice;
         int totalExhibitCount = _exhibits.Count;
 
-        foreach (var exhibit in _exhibits)
-        {
-            var costPerItem = ExhibitPricing.GetValueOrDefault(exhibit.Type, 0);
-            totalCost += costPerItem;
-        }
+        decimal totalCost = BasePrice + _exhibits.Sum(exhibit => ExhibitPricing.GetValueOrDefault(exhibit.Type, 0));
 
         decimal discountMultiplier = 1;
         

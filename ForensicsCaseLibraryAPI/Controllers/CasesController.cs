@@ -35,7 +35,7 @@ namespace ForensicsCaseLibraryAPI.Controllers
         public ActionResult<Case> CreateCase([FromBody] CaseRequest request)
         {
             var newCase = _forensicsLibrary.CreateCase(
-                request.CustomerID,
+                request.CustomerId,
                 request.ResponsiblePerson,
                 request.CaseType
             );
@@ -49,8 +49,15 @@ namespace ForensicsCaseLibraryAPI.Controllers
             var caseToApprove = _forensicsLibrary.GetCaseByNumber(caseNumber);
             if (caseToApprove == null) return NotFound();
 
-            _forensicsLibrary.ApproveCase(caseNumber);
-            return NoContent();
+            try
+            {
+                _forensicsLibrary.ApproveCase(caseNumber);
+                return NoContent();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         // PUT: api/cases/{caseNumber}/reject
@@ -60,8 +67,15 @@ namespace ForensicsCaseLibraryAPI.Controllers
             var caseToReject = _forensicsLibrary.GetCaseByNumber(caseNumber);
             if (caseToReject == null) return NotFound();
 
-            _forensicsLibrary.RejectCase(caseNumber);
-            return NoContent();
+            try
+            {
+                _forensicsLibrary.RejectCase(caseNumber);
+                return NoContent();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         // POST: api/cases/{caseNumber}/exhibits
@@ -90,7 +104,7 @@ namespace ForensicsCaseLibraryAPI.Controllers
 
     public class CaseRequest
     {
-        public int CustomerID { get; set; }
+        public int CustomerId { get; set; }
         public string ResponsiblePerson { get; set; }
         public string CaseType { get; set; }
     }

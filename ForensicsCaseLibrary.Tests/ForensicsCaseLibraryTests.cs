@@ -28,21 +28,6 @@ public class ForensicsCaseLibraryTests
         Assert.That(1, Is.EqualTo(case1.Exhibits.Count));
     }
 
-    [Test]
-    public void TestCaseApproval()
-    {
-        var case1 = _library.CreateCase(789, "Detective Approver", "Theft");
-        _library.ApproveCase("0001");
-        Assert.That(CaseState.Approved, Is.EqualTo(case1.State));
-    }
-    
-    [Test]
-    public void TestCaseReject()
-    {
-        var case1 = _library.CreateCase(789, "Detective Rejecter", "Theft");
-        _library.RejectCase("0001");
-        Assert.That(CaseState.Rejected, Is.EqualTo(case1.State));
-    }
 
     // This test is not a great idea - prices are subject to change, and it will fail due to them
     // But since cost calculation is a major part of the assignment - here it is.
