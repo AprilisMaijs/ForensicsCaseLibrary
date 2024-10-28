@@ -1,4 +1,12 @@
-﻿# Challenge
+# Overview of the Solution
+
+* All the specified business cases and requirements are implemented in the ForensicsCaseLibrary, including automatic case number generation, case approval/rejection, exhibit management, and cost calculation with discount rules (including the 100+ exhibits rule).
+* Covered the key functions with unit tests ( including pricing which is probably not a great idea as prices can be subject to change in a real prod environment )
+* Covered case state changes with tests as well
+* Added an API project to be able to easily manually test and interact with the library. No authentification & the APIs are locally hosted. There are manual test cases in ForensicsCaseLibraryAPI/ForensicsCaseLibraryAPI.http
+  * Running the API project launches Swagger, enabling convenient interaction with the APIs directly from the browser.
+
+# Challenge
 
 The task is to develop a library that handles incoming Forensics cases.
 
